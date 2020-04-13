@@ -121,6 +121,19 @@ class Home extends React.Component {
                                 {mostConfirmedCountry.country}
                             </Typography>
                         </CardComponent>
+                        <br />
+                        <CardComponent 
+                            haveCardMedia={false}
+                            heading='Most Deaths'
+                        >
+                            <hr />
+                            <Typography variant="h4" component="h4">
+                                {mostDeathsCountry.data}
+                            </Typography>
+                            <Typography variant="h5" component="h5">
+                                {mostDeathsCountry.country}
+                            </Typography>
+                        </CardComponent>
                         {/* <SelectComponent 
                             width='40%'
                             label='Select Country' 

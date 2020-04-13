@@ -9,6 +9,8 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
+import GitHubIcon from '@material-ui/icons/GitHub';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -40,6 +42,9 @@ const header = ( props ) => {
                     <Typography variant="h6" className={classes.title}>
                         {props.title}
                     </Typography>
+                    <Button color="inherit" href="https://github.com/Utshab500/covid-19-dashboard/tree/master" target="_blank">
+                       Fork here&nbsp;<GitHubIcon />
+                    </Button>
                 </Toolbar>
             </AppBar>
         </div>
