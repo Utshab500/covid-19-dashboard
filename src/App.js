@@ -14,17 +14,21 @@
 
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
+import { Helmet } from 'react-helmet'
 import Header from './components/statelessComponents/header'
 import Home from './views/home';
 import './App.css';
 
 
 class App extends Component {
-  
+  TITLE = 'Covid-19 Dashboard';
   render() {
     return (
       <BrowserRouter>
         <div className="App">
+          <Helmet>
+            <title>{ this.TITLE }</title>
+          </Helmet>
           <Header 
             banner="https://cdn1.iconfinder.com/data/icons/coronavirus-information/128/__coronavirus_corona_virus_genome-512.png"
             title="COVID-19 Dashboard"

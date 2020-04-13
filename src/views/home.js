@@ -10,8 +10,6 @@ import Typography from '@material-ui/core/Typography';
 import SelectComponent from '../components/statelessComponents/select';
 import Table from '../components/statelessComponents/fixedHeaderTable';
 import CardComponent from '../components/statelessComponents/card';
-import ButtonComponent from '../components/statelessComponents/button';
-import SnackBarComponent from '../components/statelessComponents/snackbar';
 import CovidData from '../controllers/covidData';
 import './custom.css';
 import '../App.css';
