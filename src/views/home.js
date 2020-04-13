@@ -53,7 +53,7 @@ class Home extends React.Component {
     render() {
         let countryList = Object.keys(this.state.COVID);
         let countries = [];
-        console.log(this.state.COVID);
+        // console.log(this.state.COVID);
 
         // Select Item Preparation
         if (countryList.length > 0) {
@@ -97,8 +97,6 @@ class Home extends React.Component {
                     }; 
                 }
             }
-            console.log(mostConfirmedCountry);
-            console.log(mostDeathsCountry);
         }
         
         return (
