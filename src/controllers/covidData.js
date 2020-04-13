@@ -2,7 +2,6 @@ import axios from 'axios';
 
 class CovidData {
     getData = () => {
-        console.log("Axios call");
         return axios.get('https://pomber.github.io/covid19/timeseries.json')
         .then(res => {            
             let response = res;

@@ -29,7 +29,7 @@ class App extends Component {
             banner="https://cdn1.iconfinder.com/data/icons/coronavirus-information/128/__coronavirus_corona_virus_genome-512.png"
             title="COVID-19 Dashboard"
           />
-          <Route path="/" component={Home} />
+          <Route path="/covid-19-dashboard" exact component={Home} />
         </div>
       </BrowserRouter>
     );
