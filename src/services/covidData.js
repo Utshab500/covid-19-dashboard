@@ -36,6 +36,21 @@ class CovidData {
             return response;
         });
     }
+
+    // Travel history
+    getTravelHistoryData = () => {
+        return axios.get('https://api.covid19india.org/travel_history.json')
+        .then(res => {            
+            let response = res;
+            return response;
+        })
+        .catch(err => {
+            let response = {
+                "msg" : "NA"
+            };
+            return response;
+        });
+    }
 }
 
 export default CovidData;

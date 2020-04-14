@@ -7,13 +7,15 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 
+import './custom.css';
+import '../App.css';
+
 import WorldTable from '../components/statefulComponents/worldTable';
 import IndiaTable from '../components/statefulComponents/indiaTable';
 import CardComponent from '../components/statelessComponents/card';
 import CovidData from '../services/covidData';
 import MaxMin from '../services/maxmin';
-import './custom.css';
-import '../App.css';
+import TravelHistoryAnalysis from '../services/travelHistory';
 
 
 
@@ -22,7 +24,8 @@ class Home extends React.Component {
         selectedCountry: '',
         alert: false,
         worldCOVID: {},
-        indiaCOVID: {}
+        indiaCOVID: {},
+        travelHistoryCOVID: {}
     }
 
     componentDidMount () {
@@ -32,6 +35,10 @@ class Home extends React.Component {
 
         new CovidData().getNationalTimeSeriesData().then(res => {
             this.setState({indiaCOVID: res.data})
+        });
+
+        new CovidData().getTravelHistoryData().then(res => {
+            this.setState({travelHistoryCOVID: res.data})
         });
         
     }
@@ -76,6 +83,8 @@ class Home extends React.Component {
             mostAffectedIndia = this.state.indiaCOVID.statewise[1];
         }
 
+        let travel = new TravelHistoryAnalysis().getMaxTransmissionBy(this.state.travelHistoryCOVID);
+
         // console.log(this.state.indiaCOVID);
         return (
             <div className='paddig-left-2per paddig-right-2per paddig-top-2rem'>
@@ -118,6 +127,14 @@ class Home extends React.Component {
                                 </Typography>
                                 <Typography variant="h6" component="h6">
                                     {Object.keys(this.state.indiaCOVID).length > 0?this.state.indiaCOVID.statewise[0].recovered:''}
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={6} sm={3} md={3}>
+                                <Typography variant="h6" component="h6">
+                                    Max Transmission Mode
+                                </Typography>
+                                <Typography variant="h6" component="h6">
+                                    {travel.type}:{travel.count}
                                 </Typography>
                             </Grid>
                         </Grid>

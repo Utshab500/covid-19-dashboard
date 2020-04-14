@@ -5,7 +5,7 @@
  * @email utshab500@gmail.com
  */
 class MaxMin {
-    getMostConfirmedWorlWide = (data) => {
+    getMostConfirmedWorlWide = ( data ) => {
         // Highest affected zones
         let highestConfirmed = 0;
         let mostConfirmedCountry = {};
