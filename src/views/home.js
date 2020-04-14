@@ -131,7 +131,7 @@ class Home extends React.Component {
                             </Grid>
                             <Grid item xs={6} sm={3} md={3}>
                                 <Typography variant="h6" component="h6">
-                                    Max Transmission Mode
+                                    Max Transmission Mod
                                 </Typography>
                                 <Typography variant="h6" component="h6">
                                     {travel.type}:{travel.count}
