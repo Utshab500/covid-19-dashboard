@@ -6,6 +6,8 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import InfoIcon from '@material-ui/icons/Info';
 
 import './custom.css';
 import '../App.css';
@@ -14,8 +16,8 @@ import WorldTable from '../components/statefulComponents/worldTable';
 import IndiaTable from '../components/statefulComponents/indiaTable';
 import CardComponent from '../components/statelessComponents/card';
 import CovidData from '../services/covidData';
-import MaxMin from '../services/maxmin';
-import TravelHistoryAnalysis from '../services/travelHistory';
+import DataOperation from '../services/dataOperation';
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 
@@ -25,7 +27,8 @@ class Home extends React.Component {
         alert: false,
         worldCOVID: {},
         indiaCOVID: {},
-        travelHistoryCOVID: {}
+        travelHistoryCOVID: {},
+        highestMortality: null
     }
 
     componentDidMount () {
@@ -63,6 +66,13 @@ class Home extends React.Component {
         this.setState({ alert: false });
     }
 
+    setHighestMortality = ( object ) => {
+        if(this.state.highestMortality === null) {
+            this.setState({ highestMortality: object });
+            console.log(object);
+        }
+    }
+
     render() {
         let countryList = Object.keys(this.state.worldCOVID);
         let countries = [];
@@ -74,8 +84,8 @@ class Home extends React.Component {
             }
         }
 
-        let mostConfirmedCountry = new MaxMin().getMostConfirmedWorlWide(this.state.worldCOVID);
-        let mostDeathsCountry = new MaxMin().getMostDeathsWorldWhide(this.state.worldCOVID);    
+        let mostConfirmedCountry = new DataOperation().getMostConfirmedWorlWide(this.state.worldCOVID);
+        let mostDeathsCountry = new DataOperation().getMostDeathsWorldWhide(this.state.worldCOVID);    
 
 
         let mostAffectedIndia = 0;
@@ -125,6 +135,17 @@ class Home extends React.Component {
                                 </Typography>
                                 <Typography variant="h6" component="h6">
                                     {Object.keys(this.state.indiaCOVID).length > 0?this.state.indiaCOVID.statewise[0].recovered:''}
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={12} sm={4} md={4}>
+                                <Typography variant="h5" component="h5">
+                                    Highest Morality Rate
+                                </Typography>
+                                <Typography variant="h6" component="h6">
+                                    {this.state.highestMortality !== null ? this.state.highestMortality[0]+': '+this.state.highestMortality[4].toFixed(4):''}
+                                    <Tooltip title="Calculation is w.r.t 2011 India Cencus data & CDC guidelines" placement="top-end">
+                                        <Button><InfoIcon fontSize='small'/></Button>
+                                    </Tooltip>
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -204,7 +225,7 @@ class Home extends React.Component {
                 <br />
                 <Grid container spacing={2}>
                     <Grid item xs={12} sm={12} md={6}>
-                        <IndiaTable data={this.state.indiaCOVID}/>
+                        <IndiaTable data={this.state.indiaCOVID} highestMortality={this.setHighestMortality}/>
                     </Grid>
                     <Grid item xs={12} sm={12} md={6}>
                         <WorldTable data={this.state.worldCOVID}/>

@@ -4,7 +4,8 @@
  * @author Utshab Saha
  * @email utshab500@gmail.com
  */
-class MaxMin {
+
+class DataOperation {
     getMostConfirmedWorlWide = ( data ) => {
         // Highest affected zones
         let highestConfirmed = 0;
@@ -23,7 +24,7 @@ class MaxMin {
         return mostConfirmedCountry;
     }
 
-    getMostDeathsWorldWhide = (data) => {
+    getMostDeathsWorldWhide = ( data ) => {
         let highestDeaths = 0;
         let mostDeathsCountry = {};
         if (Object.entries(data).length > 0) {
@@ -39,6 +40,14 @@ class MaxMin {
         }
         return mostDeathsCountry;
     }
+
+    /**
+     * Mortality Rate calculation is as per CDC guideline
+     * https://www.cdc.gov/csels/dsepd/ss1978/lesson3/section3.html
+     */
+    getMortalityRate = ( deaths, population ) => {
+        return ((deaths/population)*100000);
+    }
 }
 
-export default MaxMin;
+export default DataOperation;
