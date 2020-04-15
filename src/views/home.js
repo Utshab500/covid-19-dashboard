@@ -139,7 +139,7 @@ class Home extends React.Component {
                             </Grid>
                             <Grid item xs={12} sm={4} md={4}>
                                 <Typography variant="h5" component="h5">
-                                    Highest Morality Rate
+                                    Highest Mortality Rate
                                 </Typography>
                                 <Typography variant="h6" component="h6">
                                     {this.state.highestMortality !== null ? this.state.highestMortality[0]+': '+this.state.highestMortality[4].toFixed(4):''}
