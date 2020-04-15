@@ -116,7 +116,7 @@ class Home extends React.Component {
                                     Deaths Confirmed
                                 </Typography>
                                 <Typography variant="h6" component="h6">
-                                    {Object.keys(this.state.indiaCOVID).length > 0?this.state.indiaCOVID.statewise[0].deltaconfirmed:''}
+                                    {Object.keys(this.state.indiaCOVID).length > 0?this.state.indiaCOVID.statewise[0].deaths:''}
                                 </Typography>
                             </Grid>
                             <Grid item xs={6} sm={2} md={2}>

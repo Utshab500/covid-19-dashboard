@@ -38,7 +38,7 @@ const CustomizedTables = ( props ) => {
   const classes = useStyles();
   return (
     <TableContainer className={classes.container}>
-      <Table className={classes.table} stickyHeader aria-label="sticky table">
+      <Table className={classes.table} stickyHeader size='small' aria-label="sticky table">
         <TableHead>
           <TableRow>
                 {props.heading.map((h, index) => (
