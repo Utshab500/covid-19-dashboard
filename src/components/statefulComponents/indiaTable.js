@@ -9,10 +9,18 @@ import Table from '../statelessComponents/fixedHeaderTable';
 import Census from '../../consts/census';
 import DataOperation from '../../services/dataOperation';
 
-class IndiaTable extends React.Component{
+class IndiaTable extends React.Component {
+
+    tableData = [];
 
     shouldComponentUpdate(nextProps, nextState) {
-        return true;
+        if(nextProps.data !== this.props.data) {
+            this.prepareTableData(nextProps);
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 
     setHighestMortality( data ) {
@@ -27,22 +35,21 @@ class IndiaTable extends React.Component{
         this.props.highestMortality(highestMortalityState);
     }
 
-    render() {
-        // Table Data Preparation
-        let tableData = [];
-        if (Object.entries(this.props.data).length > 0) {
+    // Table Data Preparation
+    prepareTableData = ( nextProps ) => {
+        if (Object.entries(nextProps.data).length > 0) {
             let dataOperation = new DataOperation();
             let stateWisePopulation = new Census().getPopulation();
             let temp = [];
             Object.keys(stateWisePopulation).map(e => temp.push(e.toUpperCase()))
             stateWisePopulation = [...Object.entries(stateWisePopulation)];
             let stateList = [...temp];
-            temp = [...this.props.data.statewise];
+            temp = [...nextProps.data.statewise];
             temp.shift();
             for(let d in temp) {
                 let index = stateList.indexOf(temp[d].state.toUpperCase());
                 if (index >= 0) {
-                    tableData.push([ 
+                    this.tableData.push([ 
                         temp[d].state,
                         temp[d].confirmed,
                         temp[d].deaths,
@@ -51,7 +58,7 @@ class IndiaTable extends React.Component{
                     ]);
                 }
                 else {
-                    tableData.push([ 
+                    this.tableData.push([ 
                         temp[d].state,
                         temp[d].confirmed,
                         temp[d].deaths,
@@ -60,13 +67,17 @@ class IndiaTable extends React.Component{
                     ]);
                 }
             }
-            this.setHighestMortality( tableData );
+            this.setHighestMortality( this.tableData );
         }
+    }
+
+    render() {
+        
         return (
             <div>
                 <Table 
                     heading={['State', 'Confirmed', 'Deaths', 'Recovered', 'Mortality Rate']}
-                    rows={tableData}
+                    rows={this.tableData}
                 />
             </div>
         );

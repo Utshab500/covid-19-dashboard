@@ -7,12 +7,7 @@
 import React from 'react';
 import Table from '../statelessComponents/fixedHeaderTable';
 
-class WorldTable extends React.Component {
-
-
-    shouldComponentUpdate(nextProps, nextState) {
-        return true;
-    }
+class WorldTable extends React.PureComponent {
 
     render() {
         // Table Data Preparation

@@ -69,7 +69,6 @@ class Home extends React.Component {
     setHighestMortality = ( object ) => {
         if(this.state.highestMortality === null) {
             this.setState({ highestMortality: object });
-            console.log(object);
         }
     }
 
