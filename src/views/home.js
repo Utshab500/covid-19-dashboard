@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import InfoIcon from '@material-ui/icons/Info';
+import Tooltip from '@material-ui/core/Tooltip';
 
 import './custom.css';
 import '../App.css';
@@ -17,7 +18,7 @@ import IndiaTable from '../components/statefulComponents/indiaTable';
 import CardComponent from '../components/statelessComponents/card';
 import CovidData from '../services/covidData';
 import DataOperation from '../services/dataOperation';
-import Tooltip from '@material-ui/core/Tooltip';
+import Analysis from '../services/analysis';
 
 
 
@@ -92,6 +93,8 @@ class Home extends React.Component {
             mostAffectedIndia = this.state.indiaCOVID.statewise[1];
         }
 
+        let analysisIndiaData = new Analysis().analysis(this.state.indiaCOVID, 'IN');
+        let analysisWorldData = new Analysis().analysis(this.state.worldCOVID, 'WD');
         // console.log(this.state.indiaCOVID);
         return (
             <div className='paddig-left-2per paddig-right-2per paddig-top-2rem'>
